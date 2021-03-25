@@ -1,54 +1,25 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-// if(window.XMLHttpRequest) {
-//     request = new XMLHttpRequest();    
-// } else if (window.ActiveXObject) {
-//     try {
-//         request = new ActiveXObject('Msxml2.XMLHTTP');
-//     }
-//     catch(e) {
-//         try {
-//             request = new ActiveXObject('Microsoft.XMLHTTP');
-//         }
-//         catch (e) {}
-//     }
-// }
-
-
-// const body = document.querySelector('body');
-// const img = document.createElement('img');
-// body.appendChild(img);
-
-// fetch('https://api.giphy.com/v1/gifs/translate?api_key=dAZSN0yBeED6SEHsceOhqodbVRnXAc6a&s=cats', 
-// { mode: 'cors' })
-//     .then(function(response) {
-//         return response.json();
-//     })
-//     .then(function(response) {
-//         img.src = response.data.images.original.url;
-//     })
-//     .catch(function(err) {
-//         //Error 
-//     });
-
+const weather = {name: '', temp: null};
 
 function hitAPI(location) {
     let apiJson = fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=acf739538aa6ff0a52056b27277473f7', 
     { mode: 'cors' })
     .then(function(response) {
-        return response.json();
+        let data = response.json();
+        return data;
     })
-    // .then(function(response) {
-    //     return JSON.parse(response);
-    // })   
+    .then(function(data) {
+        weather.name = data.name;
+        weather.temp = data.main.temp;
+    })  
     .catch(function(err) {
-        //Error 
+        return "There is some error";
     });
-    return apiJson; 
 }
 
 let apiJson = hitAPI('London,uk');
-console.log(apiJson);
+// console.log(apiJson);
 
 // Set up a form 
 let body = document.querySelector('body');
@@ -58,12 +29,35 @@ let location = document.createElement('input');
 location.setAttribute('type', 'text');
 let button = document.createElement('button');
 button.textContent = 'Submit';
+button.setAttribute('type', 'submit');
 
 body.appendChild(container);
 container.appendChild(form);
 form.appendChild(location);
 form.appendChild(button);
 
+document.querySelector('form').addEventListener("submit", function(e){
+    e.preventDefault();    //stop form from submitting      
+    let formObj;
+    let btn = e.target;
+    let location = document.querySelector('input');
+    
+   
+    hitAPI(location.value);
+    // console.log(apiObj);
+    // console.log(typeof apiObj);
+    // console.log(apiObj.hasOwnProperty('temp'));
+    // console.log(Object.keys());
+    // console.log(Object. getOwnPropertyNames(apiObj));
+    showWeather(weather);    
+    
+});
+
+const showWeather = (weatherObj) => {
+    let message = document.createElement('p');
+    message.innerText = `Temperature of ${weatherObj.name} is: ${weatherObj.temp}`;
+    container.appendChild(message);
+}
 
 /******/ })()
 ;
