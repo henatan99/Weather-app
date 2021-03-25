@@ -32,7 +32,16 @@ body.appendChild(container);
 // 
 
 // Fetch api 
-const weather = {name: '', temp: undefined};
+const weather = {
+    name: '', 
+    temp: undefined, 
+    feels_like: undefined,
+    temp_max: undefined,
+    temp_min: undefined,
+    humidity: undefined,
+    clouds_all: undefined,
+    clouds_cod: undefined
+};
 
 async function weatherCondition(location) {
     let key = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=acf739538aa6ff0a52056b27277473f7`; 
@@ -44,6 +53,12 @@ async function weatherCondition(location) {
         let data = await response.json();
         weather.name = data.name;
         weather.temp = data.main.temp;
+        weather.feels_like = data.main.feels.like;
+        weather.temp_max = data.main.temp_max;
+        weather.temp_min = data.main.temp_min;
+        weather.humidity = data.main.humidity;
+        weather.clouds_all = data.clouds.all;
+        weather.clouds_cod = data.clouds.cod;
         console.log(data);
         showWeather(weather);
     }
@@ -60,6 +75,8 @@ document.querySelector('form').addEventListener("submit", function(e){
 const showWeather = (weatherObj) => {
     temperature.innerText = weather.temp;    
 }
+
+// error message 
 
 const throwError = () => {    
     let errorDiv = document.createElement('div');
