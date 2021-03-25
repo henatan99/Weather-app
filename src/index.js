@@ -29,17 +29,36 @@
 //         //Error 
 //     });
 
-function url(location) {
-    return 'http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=acf739538aa6ff0a52056b27277473f7';
-} 
 
-fetch(url('London,uk'), { mode: 'cors' })
+function hitAPI(location) {
+    let apiJson = fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=acf739538aa6ff0a52056b27277473f7', 
+    { mode: 'cors' })
     .then(function(response) {
-        console.log(response.json());
+        return response.json();
     })
-    .then(function(response) {
-        console.log(response);
-    })
+    // .then(function(response) {
+    //     return JSON.parse(response);
+    // })   
     .catch(function(err) {
         //Error 
     });
+    return apiJson; 
+}
+
+let apiJson = hitAPI('London,uk');
+console.log(apiJson);
+
+// Set up a form 
+let body = document.querySelector('body');
+let container = document.createElement('container');
+let form = document.createElement('form');
+let location = document.createElement('input');
+location.setAttribute('type', 'text');
+let button = document.createElement('button');
+button.textContent = 'Submit';
+
+body.appendChild(container);
+container.appendChild(form);
+form.appendChild(location);
+form.appendChild(button);
+
