@@ -1,0 +1,30 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "This project is building a weather app to search for temperature at any place in the world, using weather API and Giphy API and make handy use of promises  or preferably async/await functions.",
+  "private": true,
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "stylelint": "^13.3.3",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.17.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henatan99/Weather-app.git"
+  },
+  "author": "Henok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henatan99/Weather-app/issues"
+  },
+  "homepage": "https://github.com/henatan99/Weather-app#readme"
+}
