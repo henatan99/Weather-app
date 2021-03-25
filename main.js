@@ -1,63 +1,72 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-const weather = {name: '', temp: null};
+// Set up a page skeleton
+const body = document.querySelector('body');
+const container = document.createElement('div');
+container.classList.add('container');
 
-function hitAPI(location) {
-    let apiJson = fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=acf739538aa6ff0a52056b27277473f7', 
-    { mode: 'cors' })
-    .then(function(response) {
-        let data = response.json();
-        return data;
-    })
-    .then(function(data) {
-        weather.name = data.name;
-        weather.temp = data.main.temp;
-    })  
-    .catch(function(err) {
-        return "There is some error";
-    });
-}
+const form = document.createElement('form');
 
-let apiJson = hitAPI('London,uk');
-// console.log(apiJson);
-
-// Set up a form 
-let body = document.querySelector('body');
-let container = document.createElement('container');
-let form = document.createElement('form');
-let location = document.createElement('input');
-location.setAttribute('type', 'text');
-let button = document.createElement('button');
+const locationInput = document.createElement('input');
+locationInput.setAttribute('type', 'text');
+const button = document.createElement('button');
 button.textContent = 'Submit';
 button.setAttribute('type', 'submit');
 
-body.appendChild(container);
-container.appendChild(form);
-form.appendChild(location);
+const weatherDiv = document.createElement('div');
+const img = document.createElement('img');
+const temperature = document.createElement('h1');
+const cloud = document.createElement('h2');
+const feel = document.createElement('p');
+
+form.appendChild(locationInput);
 form.appendChild(button);
 
-document.querySelector('form').addEventListener("submit", function(e){
-    e.preventDefault();    //stop form from submitting      
-    let formObj;
-    let btn = e.target;
-    let location = document.querySelector('input');
-    
-   
-    hitAPI(location.value);
-    // console.log(apiObj);
-    // console.log(typeof apiObj);
-    // console.log(apiObj.hasOwnProperty('temp'));
-    // console.log(Object.keys());
-    // console.log(Object. getOwnPropertyNames(apiObj));
-    showWeather(weather);    
-    
-});
+weatherDiv.appendChild(img);
+weatherDiv.appendChild(temperature);
+weatherDiv.appendChild(cloud);
+weatherDiv.appendChild(feel);
 
-const showWeather = (weatherObj) => {
-    let message = document.createElement('p');
-    message.innerText = `Temperature of ${weatherObj.name} is: ${weatherObj.temp}`;
-    container.appendChild(message);
+container.appendChild(form);
+container.appendChild(weatherDiv);
+
+body.appendChild(container);
+// 
+
+// Fetch api 
+const weather = {name: '', temp: undefined};
+
+async function weatherCondition(location) {
+    let key = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=acf739538aa6ff0a52056b27277473f7`; 
+    const response = await fetch(key, { mode: 'cors' });
+
+    if(response.status === 400 || response.status === 404) {
+        throwError(); 
+    } else {
+        let data = await response.json();
+        weather.name = data.name;
+        weather.temp = data.main.temp;
+        console.log(data);
+        showWeather(weather);
+    }
 }
 
+// Submit event listener
+document.querySelector('form').addEventListener("submit", function(e){
+    e.preventDefault();    //stop form from submitting     
+    let location = document.querySelector('input');   
+    weatherCondition(location.value);
+});
+
+// display weather function
+const showWeather = (weatherObj) => {
+    temperature.innerText = weather.temp;    
+}
+
+const throwError = () => {    
+    let errorDiv = document.createElement('div');
+    errorDiv.innerHTML = '<h1>The Browser can not fetch the weather!</h1>';
+    container.appendChild(errorDiv);
+}
 /******/ })()
 ;
