@@ -48,7 +48,7 @@ const weather = {
   humidity: undefined,
   clouds_all: undefined,
   clouds_cod: undefined,
-  temp_unit: "celcius"
+  temp_unit: 'celcius',
 };
 
 const throwError = () => {
@@ -96,16 +96,15 @@ document.querySelector('form').addEventListener('submit', (e) => {
 
 
 temperature.addEventListener('click', (e) => {
-  let temper = e.target;
- 
-  if(temper.classList.contains('temp')) {
-    if(weather.temp_unit === "celcius") {
-      temperature.innerText = `${Math.floor((weather.temp - 273)* 9 / 5 +32)} \xB0F`;
-      weather.temp_unit = "farenheit";
-    }
-    else {
+  const temper = e.target;
+
+  if (temper.classList.contains('temp')) {
+    if (weather.temp_unit === 'celcius') {
+      temperature.innerText = `${Math.floor((weather.temp - 273) * (9 / 5) + 32)} \xB0F`;
+      weather.temp_unit = 'farenheit';
+    } else {
       temperature.innerText = `${Math.floor(weather.temp - 273)} \xB0C`;
-      weather.temp_unit = "celcius";
+      weather.temp_unit = 'celcius';
     }
   }
 });
