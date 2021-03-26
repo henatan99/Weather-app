@@ -320,7 +320,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_docs_cloudy_jpeg__WEBPACK_IMPORTED_MODULE_2__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".container {\n    width: 100%;\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-repeat: no-repeat;\n    background-size: cover;\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n}\n\nform {\n    margin-bottom: 3rem;\n}\n\n.weather {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    font-weight: 700;\n    color: white;\n}\n\n.weather-img {\n    width: 40px;\n    height: 40px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".container {\n  width: 100%;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-repeat: no-repeat;\n  background-size: cover;\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\nform {\n  margin-bottom: 3rem;\n}\n\n.weather {\n  font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n  font-weight: 700;\n  color: white;\n}\n\n.weather-img {\n  width: 40px;\n  height: 40px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -646,13 +646,13 @@ const throwError = () => {
 };
 
 const showWeather = (weatherObj) => {
-    img.src = weatherObj.clouds_all < 20 ? _docs_sun_037_jpg__WEBPACK_IMPORTED_MODULE_4__.default : _docs_FreeVector_Cloud_jpg__WEBPACK_IMPORTED_MODULE_3__.default;
-    temperature.innerText = `${Math.floor(weatherObj.temp - 273)} \xB0C`;
-    cloud.innerText = weatherObj.clouds_all < 20 ? 'Sunny' : 'Cloudy';
-    feel.innerText = `Feels Like ${Math.floor(weatherObj.feels_like - 273)} \xB0C`;
-    container.style.backgroundImage = weatherObj.clouds_all < 20 ? `url(${_docs_cloudy_jpeg__WEBPACK_IMPORTED_MODULE_1__.default})` : `url(${_docs_sunny_jpeg__WEBPACK_IMPORTED_MODULE_2__.default})`;
+  img.src = weatherObj.clouds_all < 20 ? _docs_sun_037_jpg__WEBPACK_IMPORTED_MODULE_4__.default : _docs_FreeVector_Cloud_jpg__WEBPACK_IMPORTED_MODULE_3__.default;
+  temperature.innerText = `${Math.floor(weatherObj.temp - 273)} \xB0C`;
+  cloud.innerText = weatherObj.clouds_all < 20 ? 'Sunny' : 'Cloudy';
+  feel.innerText = `Feels Like ${Math.floor(weatherObj.feels_like - 273)} \xB0C`;
+  container.style.backgroundImage = weatherObj.clouds_all < 20 ? `url(${_docs_cloudy_jpeg__WEBPACK_IMPORTED_MODULE_1__.default})` : `url(${_docs_sunny_jpeg__WEBPACK_IMPORTED_MODULE_2__.default})`;
 };
-  
+
 
 async function weatherCondition(location) {
   const key = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=acf739538aa6ff0a52056b27277473f7`;
@@ -678,7 +678,6 @@ document.querySelector('form').addEventListener('submit', (e) => {
   const location = document.querySelector('input');
   weatherCondition(location.value);
 });
-
 
 })();
 
