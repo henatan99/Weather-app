@@ -93,6 +93,9 @@ const showWeather = (weatherObj) => {
 
 const throwError = () => {    
     let errorDiv = document.createElement('div');
-    errorDiv.innerHTML = '<h1>The Browser can not fetch the weather!</h1>';
+    errorDiv.innerHTML = '<h1>The Browser can not fetch the weather!</h1>';    
     container.appendChild(errorDiv);
+    setTimeout(function(){
+        errorDiv.innerHTML="";
+    },3000);
 }
