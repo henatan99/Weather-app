@@ -1,7 +1,7 @@
 import './assets/style.css';
 import cloudyImg from './docs/cloudy.jpeg';
 import sunnyImg from './docs/sunny.jpeg';
-import cloudIcon from './docs/FreeVector-cloud.jpg';
+import cloudIcon from './docs/FreeVector-Cloud.jpg';
 import sunIcon from './docs/sun_037.jpg';
 
 // Set up a page skeleton
@@ -18,7 +18,10 @@ button.textContent = 'Submit';
 button.setAttribute('type', 'submit');
 
 const weatherDiv = document.createElement('div');
+weatherDiv.classList.add('weather');
+
 const img = document.createElement('img');
+img.classList.add('weather-img');
 const temperature = document.createElement('h1');
 const cloud = document.createElement('h2');
 const feel = document.createElement('p');
@@ -79,11 +82,11 @@ document.querySelector('form').addEventListener("submit", function(e){
 
 // display weather function
 const showWeather = (weatherObj) => {
-    img.innerText = 
+    img.src = weather.clouds_all < 20 ? sunIcon : cloudIcon;
     temperature.innerText = Math.floor(weather.temp - 273) + ' \xB0C';
     cloud.innerText = weather.clouds_all < 20 ? "Sunny" : "Cloudy";
     feel.innerText = `Feels Like ${Math.floor(weather.feels_like - 273)} \xB0C`;
-    container.style.backgroundImage = "url('./docs/cloudy.jpeg')|none|initial|inherit";
+    container.style.backgroundImage = weather.clouds_all < 20 ? `url(${cloudyImg})` : `url(${sunnyImg})`;
 }
 
 // error message 
