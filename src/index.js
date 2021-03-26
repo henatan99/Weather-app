@@ -22,6 +22,7 @@ weatherDiv.classList.add('weather');
 const img = document.createElement('img');
 img.classList.add('weather-img');
 const temperature = document.createElement('h1');
+temperature.classList.add('temp');
 const cloud = document.createElement('h2');
 const feel = document.createElement('p');
 
@@ -90,4 +91,17 @@ document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault(); // stop form from submitting
   const location = document.querySelector('input');
   weatherCondition(location.value);
+});
+
+
+temperature.addEventListener('click', (e) => {
+  let temper = e.target;
+  if(temper.classList.contains('temp')) {
+    if(temper.innerText.contains('\xB0C')) {
+      temper.innerText = `${Math.floor((weatherObj.temp - 273)* 5 / 9 +32)} \xB0F`
+    }
+    else {
+      temper.innerText = `${Math.floor(weatherObj.temp - 273)} \xB0C`
+    }
+  }
 });
