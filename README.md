@@ -40,7 +40,6 @@ The showWeather function dynamically changes the background and the weather icon
 - openweather API 
 
 ## Live Link
-[Live Link](https://henatan99.github.io/Restaurant-page/)  
 
 ## Authors
 
