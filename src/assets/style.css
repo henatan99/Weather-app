@@ -1,0 +1,10 @@
+.container {
+    width: 100%;
+    background-image: url("./docs/cloudy.jpeg");
+    background: red;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
