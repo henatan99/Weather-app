@@ -3,7 +3,7 @@ This project is building a weather app to search for temperature at any place in
 
 ## Description 
 The app uses an async function which takes the location name as an argument, and fetches weather data from openweather API. 
-An await ftech function is used to fetch the weatherdata from the API and the response is assigned to a variable.
+An await fetch function is used to fetch the weatherdata from the API and the response is assigned to a variable.
 The await fetch function accepts the API url whose path is an constructed from, a location name and key accessed through subscription. 
 
 ### Form 
