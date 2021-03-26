@@ -4,7 +4,6 @@ import sunnyImg from './docs/sunny.jpeg';
 import cloudIcon from './docs/FreeVector-Cloud.jpg';
 import sunIcon from './docs/sun_037.jpg';
 
-// Set up a page skeleton
 const body = document.querySelector('body');
 const container = document.createElement('div');
 container.classList.add('container');
@@ -38,9 +37,7 @@ container.appendChild(form);
 container.appendChild(weatherDiv);
 
 body.appendChild(container);
-// 
 
-// Fetch api 
 const weather = {
     name: '', 
     temp: undefined, 
@@ -67,20 +64,16 @@ async function weatherCondition(location) {
         weather.temp_min = data.main.temp_min;
         weather.humidity = data.main.humidity;
         weather.clouds_all = data.clouds.all;
-        // weather.clouds_cod = data.clouds.cod;
-        console.log(data);
         showWeather(weather);
     }
 }
 
-// Submit event listener
 document.querySelector('form').addEventListener("submit", function(e){
     e.preventDefault();    //stop form from submitting     
     let location = document.querySelector('input');   
     weatherCondition(location.value);
 });
 
-// display weather function
 const showWeather = (weatherObj) => {
     img.src = weather.clouds_all < 20 ? sunIcon : cloudIcon;
     temperature.innerText = Math.floor(weather.temp - 273) + ' \xB0C';
@@ -88,8 +81,6 @@ const showWeather = (weatherObj) => {
     feel.innerText = `Feels Like ${Math.floor(weather.feels_like - 273)} \xB0C`;
     container.style.backgroundImage = weather.clouds_all < 20 ? `url(${cloudyImg})` : `url(${sunnyImg})`;
 }
-
-// error message 
 
 const throwError = () => {    
     let errorDiv = document.createElement('div');
