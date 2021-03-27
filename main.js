@@ -657,7 +657,7 @@ const showWeather = (weatherObj) => {
 
 
 async function weatherCondition(location) {
-  const key = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=acf739538aa6ff0a52056b27277473f7`;
+  const key = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=acf739538aa6ff0a52056b27277473f7`;
   const response = await fetch(key, { mode: 'cors' });
 
   if (response.status === 400 || response.status === 404) {
